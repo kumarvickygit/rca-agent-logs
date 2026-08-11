@@ -1,0 +1,18 @@
+================================================================================
+  SCENARIO 4 — PRICING CONDITION RECORD EXPIRED
+  Incident : 23 orders cannot be saved; zero net value due to expired PR00 record
+  RCA hint : PR00 condition for MAT-00341 expired 2025-07-31; not renewed for 10 days
+================================================================================
+
+2025-08-10 10:44:01.100 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=KPATEL    WP=06 | Order creation started | Customer: 0001011200 | Material: MAT-00341 | Qty: 50 EA | SalesOrg: 1000/10/00
+2025-08-10 10:44:01.320 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMSV45   USER=KPATEL    WP=06 | Pricing procedure determined | Procedure: RVAA01 | Assigned via: SalesOrg 1000 / Cust.PriceProcedure A / Doc.PriceProcedure A
+2025-08-10 10:44:01.502 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMSV45   USER=KPATEL    WP=06 | Condition determination started | Condition type: PR00 (Base price) | Access sequence: PR02 | 3 table steps to evaluate
+2025-08-10 10:44:01.634 [WARN]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMSV45   USER=KPATEL    WP=06 | PR00 step 1 MISS | Table 305 (Customer/Material) | No valid record for customer 0001011200 / material MAT-00341
+2025-08-10 10:44:01.771 [WARN]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMSV45   USER=KPATEL    WP=06 | PR00 step 2 MISS | Table 304 (Material) | Record found but validity expired: valid-to was 2025-07-31
+2025-08-10 10:44:01.890 [ERROR] SYS=PRD CLT=100 TXN=VA01  PROG=SAPMSV45   USER=KPATEL    WP=06 | PR00 step 3 MISS | Table 301 (Price list) | No applicable record | All access steps exhausted
+2025-08-10 10:44:01.891 [ERROR] SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=KPATEL    WP=06 | PRICING FAILURE | Mandatory condition PR00 unresolved | Net order value: 0.00 USD | SAP message: V1805 — Pricing error in item 000010 | Order cannot be saved
+2025-08-10 10:44:02.001 [INFO]  SYS=PRD CLT=100 TXN=VK13  PROG=SAPMSV12   USER=KPATEL    WP=06 | Condition record lookup | Type: PR00 | Material: MAT-00341 | Status: EXPIRED | Valid-from: 2025-01-01 | Valid-to: 2025-07-31 | Last maintained by: PRICEADMIN on 2025-06-15
+2025-08-10 10:44:02.100 [ERROR] SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=KPATEL    WP=06 | Root cause confirmed: PR00 condition record for MAT-00341 expired 2025-07-31 — not renewed | Orders failing since 2025-08-01 | Total affected orders: 23 | Revenue at risk: 114,250.00 USD
+2025-08-10 10:44:15.440 [INFO]  SYS=PRD CLT=100 TXN=VK11  PROG=SAPMSV12   USER=PRICEADM  WP=09 | New condition record creation started | Type: PR00 | Material: MAT-00341 | New validity: 2025-08-10 to 2026-08-09 | Amount: 87.50 USD/EA
+2025-08-10 10:44:28.110 [INFO]  SYS=PRD CLT=100 TXN=VK11  PROG=SAPMSV12   USER=PRICEADM  WP=09 | Condition record saved | Type: PR00 | Material: MAT-00341 | Record key: 0000234891 | Price: 87.50 USD/EA | Valid: 2025-08-10 to 2026-08-09
+2025-08-10 10:45:01.001 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=KPATEL    WP=06 | Order retry for MAT-00341 | PR00 determination: SUCCESS | Net value: 4,375.00 USD | Order 0000301951 saved successfully

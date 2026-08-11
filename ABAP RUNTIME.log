@@ -1,0 +1,23 @@
+================================================================================
+  SCENARIO 5 — ABAP RUNTIME DUMP (CUSTOM PROGRAM)
+  Incident : Order change transaction crashing; 3 users affected; changes not saved
+  RCA hint : Transport TR_DEV_20250809_002 introduced misaligned ASSIGN in ZSD_DELIV_CHECK
+================================================================================
+
+2025-08-10 11:20:00.001 [INFO]  SYS=PRD CLT=100 TXN=VA02  PROG=SAPMV45A   USER=AGREEN    WP=04 | Sales order change started | Order: 0000299812 | Change: delivery date update for all 12 items
+2025-08-10 11:20:00.312 [INFO]  SYS=PRD CLT=100 TXN=VA02  PROG=SAPMV45A   USER=AGREEN    WP=04 | 12 line items queued for rescheduling | Triggering delivery feasibility check
+2025-08-10 11:20:00.445 [INFO]  SYS=PRD CLT=100 TXN=VA02  PROG=ZSD_DELIV_CHECK USER=AGREEN WP=04 | Custom program called via enhancement spot ES_SAPMV45A_004 | Program: ZSD_DELIV_CHECK | Version: 003 (transported 2025-08-09 22:00)
+2025-08-10 11:20:00.891 [ERROR] SYS=PRD CLT=100 TXN=VA02  PROG=ZSD_DELIV_CHECK USER=AGREEN WP=04 | ABAP RUNTIME ERROR: ASSIGN_BASE_WRONG_ALIGNMENT
+2025-08-10 11:20:00.892 [ERROR] SYS=PRD CLT=100 TXN=VA02  PROG=ZSD_DELIV_CHECK USER=AGREEN WP=04 | Short text : Field symbol assigned with wrong alignment for 8-byte type (DECFLOAT34)
+2025-08-10 11:20:00.893 [ERROR] SYS=PRD CLT=100 TXN=VA02  PROG=ZSD_DELIV_CHECK USER=AGREEN WP=04 | Location  : Program ZSD_DELIV_CHECK | Include ZSD_DELIV_CHECK_F01 | Row: 447 | Column: 12
+2025-08-10 11:20:00.894 [ERROR] SYS=PRD CLT=100 TXN=VA02  PROG=ZSD_DELIV_CHECK USER=AGREEN WP=04 | Call stack:
+2025-08-10 11:20:00.895 [ERROR] SYS=PRD CLT=100 TXN=VA02  PROG=ZSD_DELIV_CHECK USER=AGREEN WP=04 |   Level 1 > ZSD_DELIV_CHECK_F01 row 447 — ASSIGN <fs_weight_val> (DECFLOAT34)
+2025-08-10 11:20:00.896 [ERROR] SYS=PRD CLT=100 TXN=VA02  PROG=ZSD_DELIV_CHECK USER=AGREEN WP=04 |   Level 2 > ZSD_DELIV_CHECK row 89 — CALL FUNCTION 'CHECK_DELIVERY_WEIGHT'
+2025-08-10 11:20:00.897 [ERROR] SYS=PRD CLT=100 TXN=VA02  PROG=ZSD_DELIV_CHECK USER=AGREEN WP=04 |   Level 3 > SAPMV45A row 2341 — enhancement spot call
+2025-08-10 11:20:00.898 [ERROR] SYS=PRD CLT=100 TXN=VA02  PROG=ZSD_DELIV_CHECK USER=AGREEN WP=04 | Short dump saved | Dump ID: AGREEN_VA02_20250810_112000 | Alert sent to ABAP support: ABAP_SUPPORT_GRP
+2025-08-10 11:20:00.910 [ERROR] SYS=PRD CLT=100 TXN=VA02  PROG=SAPMV45A   USER=AGREEN    WP=04 | Transaction rolled back | Order 0000299812 changes NOT saved | User session terminated
+2025-08-10 11:20:14.231 [ERROR] SYS=PRD CLT=100 TXN=VA02  PROG=ZSD_DELIV_CHECK USER=TMUELLER WP=06 | ABAP RUNTIME ERROR: ASSIGN_BASE_WRONG_ALIGNMENT | Duplicate dump | Same program ZSD_DELIV_CHECK | Row 447 | Dump ID: TMUELLER_VA02_20250810_112014
+2025-08-10 11:20:31.007 [ERROR] SYS=PRD CLT=100 TXN=VA02  PROG=ZSD_DELIV_CHECK USER=LWANG   WP=09 | ABAP RUNTIME ERROR: ASSIGN_BASE_WRONG_ALIGNMENT | Duplicate dump | Dump ID: LWANG_VA02_20250810_112031
+2025-08-10 11:21:00.001 [INFO]  SYS=PRD CLT=100 TXN=ST22  PROG=RSSHOREX   USER=ABAP_DEV  WP=02 | Short dump analysis | Pattern: 3 identical dumps in 60 seconds | Program: ZSD_DELIV_CHECK | Transport TR_DEV_20250809_002 moved to PRD on 2025-08-09 22:00 | Developer: ZDEV_RAVI
+2025-08-10 11:21:10.445 [WARN]  SYS=PRD CLT=100 TXN=ST22  PROG=RSSHOREX   USER=ABAP_DEV  WP=02 | Root cause: Developer changed structure of Z_DELIVERY_WEIGHT table in TR_DEV_20250809_002; new field DECFLOAT34 not 8-byte aligned in ASSIGN statement at row 447 | Code review did not catch alignment requirement
+2025-08-10 11:22:55.001 [INFO]  SYS=PRD CLT=100 TXN=SE38  PROG=SAPMSEUE   USER=ABAP_DEV  WP=02 | Emergency fix in development | ZSD_DELIV_CHECK_F01 row 447 ASSIGN corrected | Transport TR_FIX_20250810_001 created | Expedited approval requested

@@ -1,0 +1,20 @@
+================================================================================
+  SCENARIO 1 — CUSTOMER CREDIT LIMIT EXCEEDED
+  Incident : Order 0000301847 blocked; credit manager SLA breach risk
+  RCA hint : Customer credit exposure at 97.5% before order; no auto-release
+================================================================================
+
+2025-08-10 06:12:03.112 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=BSMITH    WP=05 | New sales order creation started | Customer: 0001004521 | SalesOrg: 1000/10/00 | Channel: Manual
+2025-08-10 06:12:03.445 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=BSMITH    WP=05 | Partner determination successful | Sold-to: 0001004521 | Ship-to: 0001004522 | Payer: 0001004521
+2025-08-10 06:12:03.891 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=BSMITH    WP=05 | Material availability check started | Item: 000010 | Material: MAT-00412 | Plant: 1000 | Requested qty: 250 EA
+2025-08-10 06:12:04.102 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=BSMITH    WP=05 | ATP check passed | Confirmed qty: 250 EA | Confirmed delivery date: 2025-08-14
+2025-08-10 06:12:04.334 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=FV45VFKK   USER=BSMITH    WP=05 | Credit check initiated | Control area: 1000 | Risk category: B | Credit group: 01
+2025-08-10 06:12:04.557 [WARN]  SYS=PRD CLT=100 TXN=VA01  PROG=FV45VFKK   USER=BSMITH    WP=05 | Credit exposure near limit | Customer: 0001004521 | Current exposure: 48,750.00 USD | Credit limit: 50,000.00 USD | Utilization: 97.5%
+2025-08-10 06:12:04.789 [ERROR] SYS=PRD CLT=100 TXN=VA01  PROG=FV45VFKK   USER=BSMITH    WP=05 | CREDIT LIMIT EXCEEDED | Customer: 0001004521 | Order value: 3,125.00 USD | Total exposure post-order: 51,875.00 USD | Limit: 50,000.00 USD | Overage: 1,875.00 USD
+2025-08-10 06:12:04.790 [ERROR] SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=BSMITH    WP=05 | Order delivery blocked | Block reason code: 01 (Credit limit) | SAP message: VB167 — Credit limit of customer 0001004521 exceeded by 1,875.00 USD
+2025-08-10 06:12:04.812 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=BSMITH    WP=05 | Delivery block ZC applied | Notification dispatched to credit manager group: CREDMGR_US
+2025-08-10 06:12:04.901 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=BSMITH    WP=05 | Sales order saved with credit block | Order: 0000301847 | Status: BLOCKED | Delivery blocked: YES
+2025-08-10 06:14:22.004 [INFO]  SYS=PRD CLT=100 TXN=VKM1  PROG=RVKRED01   USER=CREDMGR   WP=08 | Credit release worklist accessed | Blocked orders in queue: 4
+2025-08-10 06:14:45.211 [WARN]  SYS=PRD CLT=100 TXN=VKM1  PROG=RVKRED01   USER=CREDMGR   WP=08 | Auto-release evaluation failed for order 0000301847 | Customer credit score: 42 (minimum for auto-release: 60) | Escalated to manual review
+2025-08-10 06:15:00.000 [ERROR] SYS=PRD CLT=100 TXN=VKM1  PROG=RVKRED01   USER=CREDMGR   WP=08 | Order 0000301847 remains BLOCKED | Manual release required | SLA breach expected in 47 minutes if not actioned | Customer 0001004521 last payment: 2025-07-22 (overdue 19 days)
+

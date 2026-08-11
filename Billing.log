@@ -1,0 +1,18 @@
+================================================================================
+  SCENARIO 7 — NIGHTLY BILLING BATCH JOB ABORTED (DB LOCK CONFLICT)
+  Incident : Billing job killed by DB lock; 186 of 284 orders unbilled overnight
+  RCA hint : ZFICO_PERIOD_CLOSE scheduled 5 mins before billing job; both write to VBRK
+================================================================================
+
+2025-08-10 02:00:00.001 [INFO]  SYS=PRD CLT=100 TXN=SM36  PROG=RSBATCH0   USER=BTCJOB    WP=00 | Batch job started | Job: SAP_ORDER_BILLING_DAILY | Job ID: 8821034 | Priority: A | Scheduled: 02:00:00
+2025-08-10 02:00:01.112 [INFO]  SYS=PRD CLT=100 TXN=VF04  PROG=SDRQCR21   USER=BTCJOB    WP=00 | Billing due list processing | Billing date: 2025-08-09 | Open items: 284 | Billing type: F2
+2025-08-10 02:00:05.221 [INFO]  SYS=PRD CLT=100 TXN=VF04  PROG=SDRQCR21   USER=BTCJOB    WP=00 | Progress | Billing docs created: 47/284 | Elapsed: 5s
+2025-08-10 02:00:11.334 [INFO]  SYS=PRD CLT=100 TXN=VF04  PROG=SDRQCR21   USER=BTCJOB    WP=00 | Progress | Billing docs created: 98/284 | Elapsed: 11s
+2025-08-10 02:00:19.001 [WARN]  SYS=PRD CLT=100 TXN=VF04  PROG=SDRQCR21   USER=BTCJOB    WP=00 | Performance degradation | Elapsed: 19s | Expected pace: 10 docs/sec | Actual pace: 5.1 docs/sec | High DB I/O detected | Competing table access suspected
+2025-08-10 02:00:45.112 [ERROR] SYS=PRD CLT=100 TXN=VF04  PROG=SDRQCR21   USER=BTCJOB    WP=00 | DB LOCK TIMEOUT | Table: VBRK (Billing document header) | Lock held by: job ZFICO_PERIOD_CLOSE (Job ID: 8821011) | Lock wait duration: 30s | Threshold: 30s | Lock type: Exclusive write lock
+2025-08-10 02:00:45.115 [ERROR] SYS=PRD CLT=100 TXN=VF04  PROG=SDRQCR21   USER=BTCJOB    WP=00 | Billing run ABORTED | Created before abort: 98/284 | Remaining unbilled: 186 | Revenue at risk | ABAP dump: DBIF_RSQL_SQL_ERROR
+2025-08-10 02:00:45.200 [ERROR] SYS=PRD CLT=100 TXN=SM37  PROG=RSBATCH0   USER=BTCJOB    WP=00 | Job SAP_ORDER_BILLING_DAILY status: ABORTED | Runtime: 45s | Exit code: 4 | Alert sent to: BASIS_ONCALL, FI_MANAGER
+2025-08-10 02:01:00.001 [WARN]  SYS=PRD CLT=100 TXN=SM37  PROG=RSBATCH0   USER=SYSTEM    WP=00 | Conflict analysis | Job ZFICO_PERIOD_CLOSE started 01:55:00 | Job SAP_ORDER_BILLING_DAILY started 02:00:00 | Overlap window: 5 mins | Both jobs perform exclusive writes to table VBRK | No job dependency configured in SM36 scheduler
+2025-08-10 02:01:00.110 [WARN]  SYS=PRD CLT=100 TXN=SM37  PROG=RSBATCH0   USER=SYSTEM    WP=00 | Historical note: ZFICO_PERIOD_CLOSE rescheduled from 03:00 to 01:55 on 2025-08-01 by FI team without informing BASIS | Scheduling conflict introduced 9 days ago
+2025-08-10 06:30:00.001 [INFO]  SYS=PRD CLT=100 TXN=SM37  PROG=RSBATCH0   USER=BASIS01   WP=00 | Manual restart | Job: SAP_ORDER_BILLING_DAILY | Restart from checkpoint: item 99 | ZFICO_PERIOD_CLOSE confirmed complete at 05:44 | No lock conflict expected
+2025-08-10 06:38:22.889 [INFO]  SYS=PRD CLT=100 TXN=VF04  PROG=SDRQCR21   USER=BTCJOB    WP=00 | Billing restart complete | Documents created: 186/186 | Total for 2025-08-09: 284 | Job finished 4 hours 38 minutes behind schedule | FI posting for period 8 updated

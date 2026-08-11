@@ -1,0 +1,18 @@
+================================================================================
+  SCENARIO 2 — STOCK SHORTAGE / BACKORDER (EDI ORDER)
+  Incident : Order 0000301901 blocked; EDI customer requires complete delivery
+  RCA hint : MRP not run for 3 days at plant 1100; reorder point not triggered
+================================================================================
+
+2025-08-10 07:30:10.001 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=RSANTOS   WP=03 | Inbound EDI order processing started | EDI partner: EDI_CUST_088 | IDOC no: 0000451209 | Customer PO: PO-2025-08-88123
+2025-08-10 07:30:10.312 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=RSANTOS   WP=03 | Order header created | Customer: 0001007788 | SalesOrg: 2000/20/00 | Requested delivery: 2025-08-12
+2025-08-10 07:30:10.588 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=RSANTOS   WP=03 | ATP check initiated | Material: MAT-00891 | Plant: 1100 | Required qty: 1,200 EA | Check date: 2025-08-12
+2025-08-10 07:30:10.734 [WARN]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=RSANTOS   WP=03 | Insufficient stock | Unrestricted stock: 820 EA | Open inbound PO qty: 300 EA (ETA: 2025-08-18) | Shortfall: 380 EA | Confirmed qty on requested date: 820 EA only
+2025-08-10 07:30:10.901 [ERROR] SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=RSANTOS   WP=03 | ATP FAILURE | Cannot confirm full qty for MAT-00891 at plant 1100 | Confirmed: 820 EA on 2025-08-12 | Remaining 380 EA backorder ETA: 2025-08-19 | Full qty not available until 2025-08-19
+2025-08-10 07:30:11.005 [WARN]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=RSANTOS   WP=03 | Customer 0001007788 master data flag: COMPLETE DELIVERY = YES | Partial shipment not permitted per customer contract
+2025-08-10 07:30:11.110 [ERROR] SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=RSANTOS   WP=03 | Order 0000301901 blocked | Delivery block: 51 (Incomplete ATP — complete delivery constraint) | Alert sent to planning group: PP_PLANNER_EU
+2025-08-10 07:31:05.222 [INFO]  SYS=PRD CLT=100 TXN=MD04  PROG=SAPMMD04   USER=MMGR01    WP=11 | Stock/requirements list reviewed for MAT-00891 | Plant: 1100 | Planner: MMGR01 investigating shortfall
+2025-08-10 07:32:44.889 [WARN]  SYS=PRD CLT=100 TXN=MD04  PROG=SAPMMD04   USER=MMGR01    WP=11 | MRP gap identified | Last MRP run for plant 1100: 2025-08-07 06:00 | Current date: 2025-08-10 | Gap: 3 days | Reorder point for MAT-00891 not triggered due to stale MRP data
+2025-08-10 07:33:01.001 [INFO]  SYS=PRD CLT=100 TXN=MD01  PROG=RMMRP000   USER=MMGR01    WP=11 | Emergency MRP run triggered | Scope: MAT-00891 at plant 1100 | Mode: 3 (Net change in planning horizon) | Initiating...
+2025-08-10 07:37:14.004 [INFO]  SYS=PRD CLT=100 TXN=MD01  PROG=RMMRP000   USER=MMGR01    WP=11 | MRP run complete | Planned orders: 2 | Purchase requisitions generated: 1 | PR no: 0010034512 | Runtime: 4m 13s
+2025-08-10 07:37:14.220 [WARN]  SYS=PRD CLT=100 TXN=MD01  PROG=RMMRP000   USER=MMGR01    WP=11 | Earliest replenishment date: 2025-08-19 | Order 0000301901 cannot be unblocked until stock confirmed on 2025-08-19 | Customer SLA delivery date 2025-08-12 at HIGH RISK

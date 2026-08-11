@@ -1,0 +1,22 @@
+================================================================================
+  SCENARIO 3 — RFC TIMEOUT TO EXTERNAL PAYMENT GATEWAY
+  Incident : Batch payment authorization failed; 31 orders stuck in tRFC queue
+  RCA hint : Firewall rule on paygate.internal.corp:4321 expired at 09:05:00
+================================================================================
+
+2025-08-10 09:05:00.001 [INFO]  SYS=PRD CLT=100 TXN=SM37  PROG=RSBATCH0   USER=BTCJOB    WP=00 | Batch job started | Job: SAP_PAY_AUTH_BATCH | Job ID: 8820991 | Orders queued: 32 | Scheduled: 09:05
+2025-08-10 09:05:01.221 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=TSYSTEM   WP=07 | Processing order 0000301910 | Customer: 0001009901 | Order value: 8,540.00 EUR | Initiating payment authorization
+2025-08-10 09:05:01.545 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=Z_PAY_RFC  USER=TSYSTEM   WP=07 | RFC call initiated | Destination: PAYGATE_PRD | Function module: Z_PAYMENT_AUTHORIZE | Host: paygate.internal.corp | Port: 4321
+2025-08-10 09:05:01.550 [INFO]  SYS=PRD CLT=100 TXN=VA01  PROG=Z_PAY_RFC  USER=TSYSTEM   WP=07 | TCP handshake attempted | Target: paygate.internal.corp:4321 | Waiting for response...
+2025-08-10 09:05:06.551 [WARN]  SYS=PRD CLT=100 TXN=VA01  PROG=Z_PAY_RFC  USER=TSYSTEM   WP=07 | RFC response slow | Elapsed: 5,001ms | Warning threshold: 3,000ms | No response from paygate.internal.corp:4321
+2025-08-10 09:05:11.552 [WARN]  SYS=PRD CLT=100 TXN=VA01  PROG=Z_PAY_RFC  USER=TSYSTEM   WP=07 | RFC retry attempt 1/3 | Elapsed total: 10,002ms | Connection still not established
+2025-08-10 09:05:21.553 [WARN]  SYS=PRD CLT=100 TXN=VA01  PROG=Z_PAY_RFC  USER=TSYSTEM   WP=07 | RFC retry attempt 2/3 | Elapsed total: 20,003ms | Connection still not established
+2025-08-10 09:05:31.554 [ERROR] SYS=PRD CLT=100 TXN=VA01  PROG=Z_PAY_RFC  USER=TSYSTEM   WP=07 | RFC TIMEOUT | Destination: PAYGATE_PRD | Total elapsed: 30,004ms | All 3 retry attempts exhausted | ABAP exception: COMMUNICATION_FAILURE | OS error: ECONNREFUSED
+2025-08-10 09:05:31.556 [ERROR] SYS=PRD CLT=100 TXN=VA01  PROG=SAPMV45A   USER=TSYSTEM   WP=07 | Payment authorization FAILED for order 0000301910 | Error trapped from RFC | Order status set to: PAYMENT_PENDING
+2025-08-10 09:05:31.560 [ERROR] SYS=PRD CLT=100 TXN=SM37  PROG=RSBATCH0   USER=TSYSTEM   WP=07 | Batch aborted after first failure | Remaining 31 orders skipped to prevent work-process saturation | Batch job status: FAILED
+2025-08-10 09:05:31.900 [ERROR] SYS=PRD CLT=100 TXN=SM58  PROG=RSTRFCQ0   USER=TSYSTEM   WP=07 | tRFC queue error | Queue: PAYGATE_OUTBOUND | Error type: SYSFAIL | Pending entries: 31 | Retry scheduled in 15 mins
+2025-08-10 09:06:01.001 [ERROR] SYS=PRD CLT=100 TXN=SM21  PROG=SYSLOG     USER=SYSTEM    WP=00 | SYSTEM LOG ALERT | RFC destination PAYGATE_PRD unreachable | Failures on work processes: WP03, WP05, WP07, WP09 | Incident ticket auto-created: INC-20250810-00421
+2025-08-10 09:08:33.112 [INFO]  SYS=PRD CLT=100 TXN=SM59  PROG=SAPMSSY1   USER=BASIS01   WP=02 | RFC destination connectivity test | Destination: PAYGATE_PRD | Result: FAILED | TCP refused on paygate.internal.corp:4321 | Network team notified
+2025-08-10 09:22:17.001 [INFO]  SYS=PRD CLT=100 TXN=SM59  PROG=SAPMSSY1   USER=BASIS01   WP=02 | RFC destination connectivity test | Destination: PAYGATE_PRD | Result: SUCCESS | Latency: 142ms | Root cause confirmed: firewall rule for port 4321 expired at 09:05:00 — renewed by network team at 09:21:44
+2025-08-10 09:22:45.003 [INFO]  SYS=PRD CLT=100 TXN=SM58  PROG=RSTRFCQ0   USER=BASIS01   WP=02 | tRFC queue reprocessing started | Queue: PAYGATE_OUTBOUND | Pending: 31 entries | Estimated completion: 6 mins
+2025-08-10 09:28:31.440 [INFO]  SYS=PRD CLT=100 TXN=SM58  PROG=RSTRFCQ0   USER=BTCJOB    WP=00 | tRFC queue cleared | Processed: 31/31 | Failed: 0 | Batch SAP_PAY_AUTH_BATCH completed late by 23 mins 31 secs
