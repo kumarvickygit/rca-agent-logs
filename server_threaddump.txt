@@ -1,0 +1,50 @@
+Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.292-b10 mixed mode):
+
+"http-nio-8080-exec-14" #45 daemon prio=5 os_prio=0 tid=0x00007f3a1c004800 nid=0x1234 waiting on condition
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at com.gsn.app.CacheManager.populateCache(CacheManager.java:312)
+	- waiting to lock <0x000000076b372388> (a java.util.HashMap)
+	at com.gsn.app.ReportService.buildLargeReport(ReportService.java:245)
+	at com.gsn.app.ReportController.generate(ReportController.java:88)
+
+"http-nio-8080-exec-15" #46 daemon prio=5 os_prio=0 tid=0x00007f3a1c005000 nid=0x1235 waiting on condition
+   java.lang.Thread.State: BLOCKED (on object monitor)
+	at com.gsn.app.CacheManager.populateCache(CacheManager.java:312)
+	- waiting to lock <0x000000076b372388> (a java.util.HashMap)
+
+"http-nio-8080-exec-22" #53 daemon prio=5 os_prio=0 tid=0x00007f3a1c009000 nid=0x123c in Object.wait()
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at com.gsn.app.DataProcessor.loadAll(DataProcessor.java:188)
+
+"GC Thread#0" os_prio=2 tid=0x00007f3a04019000 nid=0x1100 runnable
+   java.lang.Thread.State: RUNNABLE
+
+"GC Thread#1" os_prio=2 tid=0x00007f3a0401b000 nid=0x1101 runnable
+   java.lang.Thread.State: RUNNABLE
+
+Found one Java-level deadlock:
+=============================
+"http-nio-8080-exec-30":
+  waiting to lock monitor 0x000000076b372388 (object java.util.HashMap, a com.gsn.app.cache.LocalCache),
+  which is held by "http-nio-8080-exec-31"
+"http-nio-8080-exec-31":
+  waiting to lock monitor 0x000000076b372400 (object java.util.ArrayList, a com.gsn.app.queue.TaskQueue),
+  which is held by "http-nio-8080-exec-30"
+
+Java stack information for the threads listed above:
+===================================================
+"http-nio-8080-exec-30":
+	at com.gsn.app.TaskScheduler.acquireQueue(TaskScheduler.java:201)
+	- waiting to lock <0x000000076b372388>
+	at com.gsn.app.TaskScheduler.run(TaskScheduler.java:155)
+"http-nio-8080-exec-31":
+	at com.gsn.app.CacheManager.flush(CacheManager.java:290)
+	- waiting to lock <0x000000076b372400>
+	at com.gsn.app.CacheManager.syncWithQueue(CacheManager.java:260)
+
+JNI global references: 342
+Heap usage:
+ PSYoungGen total 917504K, used 891203K [0x...)
+ ParOldGen   total 2097152K, used 2089445K [0x...)
+ Metaspace   used 68432K, capacity 70144K
