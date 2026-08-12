@@ -1,0 +1,142 @@
+@Reporting 2026-08-10T00:05:00,720 ERROR [pool-2-thread-35] [LoggerUtils:14] error when executing sql 'call A2A_MSG_RELATED_PURGING(i_purge_older_than_in_days => 30, i_table_owner = TEST1_B2)', connection: A2A : ORA-00907: missing right parenthesis
+
+@Reporting 2026-08-10T00:05:00,720 ERROR [pool-2-thread-35] [LoggerUtils:14] error when executing Report template 210001 : ORA-00907: missing right parenthesis
+Issue : query is not designed properly. re-write the sql and check executing again.
+
+@Reporting 2026-08-10T00:05:00,734 WARN  [pool-2-thread-35] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:00,745 WARN  [pool-2-thread-35] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:00,781 INFO  [pool-2-thread-1] [ExcelReportServiceImpl:103] Report generation completed: 2543034215
+@Reporting 2026-08-10T00:05:00,808 WARN  [pool-2-thread-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:00,820 WARN  [pool-2-thread-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:01,472 INFO  [pool-2-thread-16] [OutSftpServiceImpl:147] SFTP Channel Connected
+@Reporting 2026-08-10T00:05:02,431 WARN  [sureporting42803] [QueryTranslatorImpl:373] HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+@Reporting 2026-08-10T00:05:02,437 INFO  [sureporting42803] [ReportJobGeneratedDaoImpl:71] Jobs are picked and locked []
+@Reporting 2026-08-10T00:05:02,437 INFO  [sureporting42803] [ReportJobGeneratedScheduler:84] No more reports to generate.
+@Reporting 2026-08-10T00:05:03,004 INFO  [pool-2-thread-16] [OutSftpServiceImpl:147] SFTP Channel Connected
+@Reporting 2026-08-10T00:05:03,113 WARN  [myScheduler-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:04,571 INFO  [pool-2-thread-16] [OutSftpServiceImpl:147] SFTP Channel Connected
+if currentSftpClient is not null !! 
+if currentSftpClient is null 
+Session connected!!!
+@Reporting 2026-08-10T00:05:07,015 INFO  [pool-2-thread-16] [OutSftpServiceImpl:285] Session connected!!!
+@Reporting 2026-08-10T00:05:07,431 WARN  [sureporting42804] [QueryTranslatorImpl:373] HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+@Reporting 2026-08-10T00:05:07,438 INFO  [sureporting42804] [ReportJobGeneratedDaoImpl:71] Jobs are picked and locked []
+@Reporting 2026-08-10T00:05:07,438 INFO  [sureporting42804] [ReportJobGeneratedScheduler:84] No more reports to generate.
+@Reporting 2026-08-10T00:05:07,524 INFO  [pool-2-thread-16] [OutSftpServiceImpl:147] SFTP Channel Connected
+@Reporting 2026-08-10T00:05:08,117 WARN  [myScheduler-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:12,431 WARN  [sureporting42805] [QueryTranslatorImpl:373] HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+@Reporting 2026-08-10T00:05:12,437 INFO  [sureporting42805] [ReportJobGeneratedDaoImpl:71] Jobs are picked and locked []
+@Reporting 2026-08-10T00:05:12,437 INFO  [sureporting42805] [ReportJobGeneratedScheduler:84] No more reports to generate.
+@Reporting 2026-08-10T00:05:13,120 WARN  [myScheduler-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:17,431 WARN  [sureporting42806] [QueryTranslatorImpl:373] HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+@Reporting 2026-08-10T00:05:17,436 INFO  [sureporting42806] [ReportJobGeneratedDaoImpl:71] Jobs are picked and locked []
+@Reporting 2026-08-10T00:05:17,437 INFO  [sureporting42806] [ReportJobGeneratedScheduler:84] No more reports to generate.
+@Reporting 2026-08-10T00:05:18,123 WARN  [myScheduler-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:22,432 WARN  [sureporting42807] [QueryTranslatorImpl:373] HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+@Reporting 2026-08-10T00:05:22,437 INFO  [sureporting42807] [ReportJobGeneratedDaoImpl:71] Jobs are picked and locked []
+@Reporting 2026-08-10T00:05:22,438 INFO  [sureporting42807] [ReportJobGeneratedScheduler:84] No more reports to generate.
+@Reporting 2026-08-10T00:05:23,125 WARN  [myScheduler-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:27,431 WARN  [sureporting42808] [QueryTranslatorImpl:373] HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+@Reporting 2026-08-10T00:05:27,437 INFO  [sureporting42808] [ReportJobGeneratedDaoImpl:71] Jobs are picked and locked []
+@Reporting 2026-08-10T00:05:27,437 INFO  [sureporting42808] [ReportJobGeneratedScheduler:84] No more reports to generate.
+@Reporting 2026-08-10T00:05:28,128 WARN  [myScheduler-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:31,295 INFO  [pool-2-thread-16] [OutSftpServiceImpl:147] SFTP Channel Connected
+@Reporting 2026-08-10T00:05:32,431 WARN  [sureporting42809] [QueryTranslatorImpl:373] HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+@Reporting 2026-08-10T00:05:32,436 INFO  [sureporting42809] [ReportJobGeneratedDaoImpl:71] Jobs are picked and locked []
+@Reporting 2026-08-10T00:05:32,437 INFO  [sureporting42809] [ReportJobGeneratedScheduler:84] No more reports to generate.
+@Reporting 2026-08-10T00:05:33,131 WARN  [myScheduler-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:37,432 WARN  [sureporting42810] [QueryTranslatorImpl:373] HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+@Reporting 2026-08-10T00:05:37,437 INFO  [sureporting42810] [ReportJobGeneratedDaoImpl:71] Jobs are picked and locked []
+@Reporting 2026-08-10T00:05:37,438 INFO  [sureporting42810] [ReportJobGeneratedScheduler:84] No more reports to generate.
+@Reporting 2026-08-10T00:05:38,134 WARN  [myScheduler-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:42,431 WARN  [sureporting42811] [QueryTranslatorImpl:373] HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+@Reporting 2026-08-10T00:05:42,437 INFO  [sureporting42811] [ReportJobGeneratedDaoImpl:71] Jobs are picked and locked []
+@Reporting 2026-08-10T00:05:42,437 INFO  [sureporting42811] [ReportJobGeneratedScheduler:84] No more reports to generate.
+@Reporting 2026-08-10T00:05:43,137 WARN  [myScheduler-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:47,432 WARN  [sureporting42812] [QueryTranslatorImpl:373] HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+@Reporting 2026-08-10T00:05:47,438 INFO  [sureporting42812] [ReportJobGeneratedDaoImpl:71] Jobs are picked and locked []
+@Reporting 2026-08-10T00:05:47,438 INFO  [sureporting42812] [ReportJobGeneratedScheduler:84] No more reports to generate.
+@Reporting 2026-08-10T00:05:48,139 WARN  [myScheduler-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:48,226 WARN  [pool-2-thread-16] [SystemJobServiceImpl:113] System job processing not logged.
+@Reporting 2026-08-10T00:05:48,227 WARN  [pool-2-thread-16] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:48,240 WARN  [pool-2-thread-16] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:52,433 WARN  [sureporting42813] [QueryTranslatorImpl:373] HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+@Reporting 2026-08-10T00:05:52,440 INFO  [sureporting42813] [ReportJobGeneratedDaoImpl:71] Jobs are picked and locked []
+@Reporting 2026-08-10T00:05:52,440 INFO  [sureporting42813] [ReportJobGeneratedScheduler:84] No more reports to generate.
+@Reporting 2026-08-10T00:05:53,143 WARN  [myScheduler-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:05:57,433 WARN  [sureporting42814] [QueryTranslatorImpl:373] HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+@Reporting 2026-08-10T00:05:57,438 INFO  [sureporting42814] [ReportJobGeneratedDaoImpl:71] Jobs are picked and locked []
+@Reporting 2026-08-10T00:05:57,439 INFO  [sureporting42814] [ReportJobGeneratedScheduler:84] No more reports to generate.
+@Reporting 2026-08-10T00:05:58,146 WARN  [myScheduler-1] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:06:00,004 WARN  [pool-2-thread-21] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:06:00,014 WARN  [pool-2-thread-21] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:06:00,030 WARN  [pool-2-thread-21] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:06:00,035 INFO  [pool-2-thread-21] [SystemJobServiceImpl:75] process( systemJob=2543033740, schedule=2543034437 )
+@Reporting 2026-08-10T00:06:00,040 WARN  [pool-2-thread-21] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
+@Reporting 2026-08-10T00:06:00,053 INFO  [pool-2-thread-21] [ExcelReportServiceImpl:52] Report generation started: 2543019635
+@Reporting 2026-08-10T00:06:00,062 INFO  [pool-2-thread-21] [AbstractReportServiceImpl:163] User: null
+reportTemplate: com.client.reporting.reporttemplate.model.ReportTemplate@1b3a863e
+ MaintainSystem? false
+ Communication? false
+ MonitorJob? false
+@Reporting 2026-08-10T00:07:12,141 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:322] send emailBcc: 
+emailRecipients: null
+@Reporting 2026-08-10T00:07:12,141 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:527] doSend: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, attempt: 1, bcc: null
+ reportingOutEmailRecipients: com.client.reporting.outemail.model.ReportingOutEmailRecipients@8256980b
+@Reporting 2026-08-10T00:07:12,141 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:175] createMimeMessage: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, toEmail: null
+@Reporting 2026-08-10T00:07:12,164 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:534] doSend >> mimeMessage: org.springframework.mail.javamail.SmartMimeMessage@1c648b29
+@Reporting 2026-08-10T00:07:12,164 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:541] Sending OutEmail 2544243130, attempt: 1
+@Reporting 2026-08-10T00:07:12,201 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:543] OutEmail 2544243130 sent.
+@Reporting 2026-08-10T00:07:12,201 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:322] send: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, result: true
+@Reporting 2026-08-10T00:07:12,244 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:527] doSend: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, attempt: 1, bcc: null
+ reportingOutEmailRecipients: com.client.reporting.outemail.model.ReportingOutEmailRecipients@9d38e817
+@Reporting 2026-08-10T00:07:12,244 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:175] createMimeMessage: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, toEmail: null
+@Reporting 2026-08-10T00:07:12,244 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:534] doSend >> mimeMessage: org.springframework.mail.javamail.SmartMimeMessage@12c1daeb
+@Reporting 2026-08-10T00:07:12,244 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:541] Sending OutEmail 2544243130, attempt: 1
+@Reporting 2026-08-10T00:07:12,272 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:543] OutEmail 2544243130 sent.
+@Reporting 2026-08-10T00:07:12,272 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:322] send: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, result: true
+@Reporting 2026-08-10T00:07:12,306 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:322] send emailBcc: 
+emailRecipients: null
+@Reporting 2026-08-10T00:07:12,306 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:527] doSend: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, attempt: 1, bcc: null
+ reportingOutEmailRecipients: com.client.reporting.outemail.model.ReportingOutEmailRecipients@63f18b
+@Reporting 2026-08-10T00:07:12,306 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:175] createMimeMessage: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, toEmail: null
+@Reporting 2026-08-10T00:07:12,307 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:534] doSend >> mimeMessage: org.springframework.mail.javamail.SmartMimeMessage@a95f8812
+@Reporting 2026-08-10T00:07:12,307 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:541] Sending OutEmail 2544243130, attempt: 1
+@Reporting 2026-08-10T00:07:12,343 ERROR [pool-2-thread-7] [LoggerUtils:14] Caught exception when (re-)sending OutEmail 2544243130 : Failed messages: javax.mail.SendFailedException: Invalid Addresses;
+  nested exception is:
+@Reporting 2026-08-10T00:07:12,343 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:552] Received MailSendException, determining cause for the OutEmail 2544243130, attempt: 2
+@Reporting 2026-08-10T00:07:12,343 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:568] Received SendFailedException, attempting to re-send the OutEmail 2544243130, attempt: 2
+@Reporting 2026-08-10T00:07:12,343 WARN  [pool-2-thread-7] [ReportingOutEmailServiceImpl:582] Incorrect email address(es): abc@client.com
+@Reporting 2026-08-10T00:07:12,343 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:587] There are no more unsent addresses for the OutEmail 2544243130, returning success.
+@Reporting 2026-08-10T00:07:12,343 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:322] send: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, result: true
+@Reporting 2026-08-10T00:07:12,376 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:322] send emailBcc: 
+emailRecipients: null
+ recipientEmailId: C@client.com
+@Reporting 2026-08-10T00:07:12,376 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:527] doSend: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, attempt: 1, bcc: null
+ reportingOutEmailRecipients: com.client.reporting.outemail.model.ReportingOutEmailRecipients@be92cdf8
+@Reporting 2026-08-10T00:07:12,376 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:175] createMimeMessage: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, toEmail: null
+@Reporting 2026-08-10T00:07:12,377 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:534] doSend >> mimeMessage: org.springframework.mail.javamail.SmartMimeMessage@452dc362
+@Reporting 2026-08-10T00:07:12,377 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:541] Sending OutEmail 2544243130, attempt: 1
+@Reporting 2026-08-10T00:07:12,426 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:543] OutEmail 2544243130 sent.
+@Reporting 2026-08-10T00:07:12,427 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:322] send: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, result: true
+@Reporting 2026-08-10T00:07:12,431 WARN  [sureporting42829] [QueryTranslatorImpl:373] HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+@Reporting 2026-08-10T00:07:12,437 INFO  [sureporting42829] [ReportJobGeneratedDaoImpl:71] Jobs are picked and locked []
+@Reporting 2026-08-10T00:07:12,438 INFO  [sureporting42829] [ReportJobGeneratedScheduler:84] No more reports to generate.
+@Reporting 2026-08-10T00:07:12,444 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:322]  systemJob null
+@Reporting 2026-08-10T00:07:12,444 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:322] email.getSystemJob()  : null
+@Reporting 2026-08-10T00:07:12,444 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:613] 2. processNotSentEmails: 2532254302, systemJobType: Communication, email: xyz@client.com
+@Reporting 2026-08-10T00:07:12,444 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:322]  systemJob id 2532254302
+@Reporting 2026-08-10T00:07:12,444 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:322] email.getSystemJob().getParams()  :null
+@Reporting 2026-08-10T00:07:12,444 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:322] send >>> systemJobId: 2543033740,systemJobType: RunReport
+@Reporting 2026-08-10T00:07:12,444 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:322] addMimeMessageDetails >>> RunReport? true
+ FtpReceive? false
+ MaintainSystem? false
+ Communication? false
+ MonitorJob? false
+@Reporting 2026-08-10T00:07:12,478 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:527] doSend: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, attempt: 1, bcc: null
+ reportingOutEmailRecipients: com.client.reporting.outemail.model.ReportingOutEmailRecipients@310fa1e0
+@Reporting 2026-08-10T00:07:12,478 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:175] createMimeMessage: com.client.reporting.systemjob.model.SystemJob@da8a8e6c, toEmail: null
+@Reporting 2026-08-10T00:07:12,479 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:534] doSend >> mimeMessage: org.springframework.mail.javamail.SmartMimeMessage@2c03e654
+@Reporting 2026-08-10T00:07:12,479 INFO  [pool-2-thread-7] [ReportingOutEmailServiceImpl:541] Sending OutEmail 2544243149, attempt: 1
+@Reporting 2026-08-10T00:07:12,516 ERROR [pool-2-thread-7] [LoggerUtils:14] Caught exception when (re-)sending OutEmail 2544243149 : Failed messages: javax.mail.SendFailedException: Invalid Addresses;
+  nested exception is:
