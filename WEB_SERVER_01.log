@@ -1,0 +1,31 @@
+================================================================================
+  WEB_SERVER_01 — Apache/Nginx CPU High Utilisation Incident Log
+  Server: WEB_SERVER_01 | OS: RHEL 8.6 | CPU: 8 cores
+  Incident: CPU sustained above 95% for 18 minutes
+  Hosted apps: REPORTING_APP, BILLING_SERVICE
+================================================================================
+
+2026-08-11 09:00:01 [INFO]  SYS=WEB_SERVER_01 CPU=12% MEM=34% | System nominal | Load avg: 0.8
+2026-08-11 09:05:03 [INFO]  SYS=WEB_SERVER_01 CPU=18% MEM=35% | Load avg: 1.2
+2026-08-11 09:10:05 [INFO]  SYS=WEB_SERVER_01 CPU=21% MEM=36% | Load avg: 1.4
+2026-08-11 09:15:08 [INFO]  SYS=WEB_SERVER_01 CPU=28% MEM=37% | Load avg: 1.9
+2026-08-11 09:20:11 [INFO]  SYS=WEB_SERVER_01 CPU=35% MEM=39% | Load avg: 2.3 | REPORTING_APP active connections: 42
+2026-08-11 09:25:14 [INFO]  SYS=WEB_SERVER_01 CPU=44% MEM=41% | Load avg: 3.1 | BILLING_SERVICE active connections: 28
+2026-08-11 09:30:17 [WARN]  SYS=WEB_SERVER_01 CPU=62% MEM=44% | Load avg: 4.8 | CPU rising — threshold 60% crossed
+2026-08-11 09:31:02 [WARN]  SYS=WEB_SERVER_01 CPU=71% MEM=46% | Load avg: 5.6 | REPORTING_APP threads: 148 | BILLING_SERVICE threads: 31
+2026-08-11 09:32:15 [WARN]  SYS=WEB_SERVER_01 CPU=79% MEM=48% | Load avg: 6.2 | High thread count detected — REPORTING_APP consuming 82% of worker threads
+2026-08-11 09:33:01 [ERROR] SYS=WEB_SERVER_01 CPU=88% MEM=51% | Load avg: 7.1 | CPU critical threshold 85% breached | Top process: nginx worker (PID 14821) | App: REPORTING_APP
+2026-08-11 09:33:45 [ERROR] SYS=WEB_SERVER_01 CPU=92% MEM=53% | Load avg: 7.8 | REPORTING_APP generating excessive DB queries — 4200 queries/min detected
+2026-08-11 09:34:10 [ERROR] SYS=WEB_SERVER_01 CPU=95% MEM=55% | Load avg: 8.3 | ALERT: System near capacity | Nginx worker queue depth: 1840 | Request backlog growing
+2026-08-11 09:34:55 [ERROR] SYS=WEB_SERVER_01 CPU=97% MEM=57% | Load avg: 8.7 | REPORTING_APP response time: 18400ms | BILLING_SERVICE response time: 420ms
+2026-08-11 09:35:30 [ERROR] SYS=WEB_SERVER_01 CPU=98% MEM=58% | Load avg: 8.9 | Nginx upstream timeout — REPORTING_APP upstream: 504 Gateway Timeout x 312 requests
+2026-08-11 09:36:00 [CRITICAL] SYS=WEB_SERVER_01 CPU=99% MEM=59% | Load avg: 9.1 | REPORTING_APP upstream UNAVAILABLE | BILLING_SERVICE degraded — collateral impact
+2026-08-11 09:36:22 [ERROR] SYS=WEB_SERVER_01 CPU=99% MEM=59% | kernel: OOM score adjusted | PID 14821 nginx worker RSS 1.2GB | Swap usage: 78%
+2026-08-11 09:36:45 [ERROR] SYS=WEB_SERVER_01 CPU=98% MEM=60% | Load avg: 9.0 | BILLING_SERVICE connections dropped: 14 | Collateral impact confirmed
+2026-08-11 09:37:10 [WARN]  SYS=WEB_SERVER_01 CPU=94% MEM=58% | Load avg: 8.4 | REPORTING_APP throttled by nginx rate limiter — requests capped at 100/min
+2026-08-11 09:37:55 [WARN]  SYS=WEB_SERVER_01 CPU=86% MEM=56% | Load avg: 7.6 | CPU declining after throttle applied
+2026-08-11 09:39:00 [INFO]  SYS=WEB_SERVER_01 CPU=71% MEM=53% | Load avg: 6.1 | REPORTING_APP connections reducing
+2026-08-11 09:41:00 [INFO]  SYS=WEB_SERVER_01 CPU=52% MEM=49% | Load avg: 4.8 | System recovering
+2026-08-11 09:43:00 [INFO]  SYS=WEB_SERVER_01 CPU=38% MEM=45% | Load avg: 3.2 | REPORTING_APP response time: 2100ms — improved
+2026-08-11 09:45:00 [INFO]  SYS=WEB_SERVER_01 CPU=24% MEM=41% | Load avg: 2.1 | BILLING_SERVICE fully recovered | Response time: 380ms
+2026-08-11 09:47:00 [INFO]  SYS=WEB_SERVER_01 CPU=18% MEM=38% | Load avg: 1.6 | System nominal | Incident window: 09:30 - 09:37

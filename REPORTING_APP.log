@@ -1,0 +1,32 @@
+================================================================================
+  REPORTING_APP — Application Log
+  Server: WEB_SERVER_01 | App: REPORTING_APP (Java/Spring Boot)
+  Incident: Uncontrolled query execution causing CPU spike on host server
+  Root cause hint: Scheduled report job triggered full table scan without pagination
+================================================================================
+
+2026-08-11 09:00:05 [INFO]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=http-nio-8080-exec-1 | Application startup complete | JVM heap: 2GB allocated
+2026-08-11 09:05:10 [INFO]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=http-nio-8080-exec-4 | Scheduled report job triggered | Job: MONTHLY_SALES_REPORT | Frequency: daily
+2026-08-11 09:05:12 [INFO]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=scheduler-1 | DB connection pool acquired | Pool size: 20 | Active: 1
+2026-08-11 09:10:15 [INFO]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=http-nio-8080-exec-8 | User requests served: 340 | Avg response: 320ms
+2026-08-11 09:15:20 [INFO]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=scheduler-1 | MONTHLY_SALES_REPORT progress | Records fetched: 42000/2400000 | Elapsed: 10min
+2026-08-11 09:20:22 [WARN]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=scheduler-1 | MONTHLY_SALES_REPORT slow query detected | Query: SELECT * FROM SALES_TRANSACTIONS WHERE year=2026 | Rows scanned: 2400000 | No index used | Duration so far: 15min
+2026-08-11 09:25:25 [WARN]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=scheduler-1 | DB connection pool exhausted | Pool size: 20 | Active: 20 | Waiting: 48 | MONTHLY_SALES_REPORT holding 18 connections
+2026-08-11 09:28:30 [WARN]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=http-nio-8080-exec-12 | Thread pool near capacity | Active threads: 124/150 | Queue: 28
+2026-08-11 09:30:10 [ERROR] APP=REPORTING_APP HOST=WEB_SERVER_01 THR=scheduler-1 | MONTHLY_SALES_REPORT query timeout after 25min | SQL: SELECT * FROM SALES_TRANSACTIONS WHERE year=2026 ORDER BY transaction_date | Full table scan — missing index on transaction_date | Rows: 2,400,000
+2026-08-11 09:30:12 [ERROR] APP=REPORTING_APP HOST=WEB_SERVER_01 THR=scheduler-1 | Job retry triggered | Attempt 2/3 | MONTHLY_SALES_REPORT restarting — same query re-executed without fix
+2026-08-11 09:30:45 [ERROR] APP=REPORTING_APP HOST=WEB_SERVER_01 THR=http-nio-8080-exec-18 | Request queue overflow | Active: 148 threads | Queue: 312 requests waiting | New requests being rejected
+2026-08-11 09:31:20 [ERROR] APP=REPORTING_APP HOST=WEB_SERVER_01 THR=scheduler-1 | DB connection timeout | Cannot acquire connection from pool | All 20 connections held by MONTHLY_SALES_REPORT retries
+2026-08-11 09:32:00 [ERROR] APP=REPORTING_APP HOST=WEB_SERVER_01 THR=http-nio-8080-exec-22 | HTTP 503 Service Unavailable returned to 84 clients | Thread pool exhausted
+2026-08-11 09:32:45 [ERROR] APP=REPORTING_APP HOST=WEB_SERVER_01 THR=scheduler-1 | Job retry triggered | Attempt 3/3 | MONTHLY_SALES_REPORT restarting again — no circuit breaker configured
+2026-08-11 09:33:10 [ERROR] APP=REPORTING_APP HOST=WEB_SERVER_01 THR=GC-worker-1 | GC overhead limit exceeded | GC time: 98% | Heap used: 1.94GB/2GB | Full GC triggered x 12 in last 60s
+2026-08-11 09:33:50 [ERROR] APP=REPORTING_APP HOST=WEB_SERVER_01 THR=scheduler-1 | MONTHLY_SALES_REPORT ALL retries exhausted | Job FAILED | Total records fetched: 0 | Duration: 28min | Root cause: unbounded query + no pagination + no index
+2026-08-11 09:34:15 [ERROR] APP=REPORTING_APP HOST=WEB_SERVER_01 THR=http-nio-8080-exec-31 | OutOfMemoryError: Java heap space | Heap: 2GB exhausted | JVM attempting emergency GC
+2026-08-11 09:34:50 [CRITICAL] APP=REPORTING_APP HOST=WEB_SERVER_01 THR=main | Application health check FAILED | Status: UNHEALTHY | DB pool: unavailable | Thread pool: exhausted | Heap: critical
+2026-08-11 09:35:10 [ERROR] APP=REPORTING_APP HOST=WEB_SERVER_01 THR=http-nio-8080-exec-35 | Nginx upstream receiving 504 responses | App cannot process requests | Worker threads blocked on DB wait
+2026-08-11 09:37:00 [WARN]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=nginx-rate-limiter | Nginx rate limiter applied | Incoming requests capped: 100/min | CPU pressure relieving
+2026-08-11 09:38:00 [INFO]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=scheduler-1 | MONTHLY_SALES_REPORT marked DEAD | Job scheduler paused | Manual intervention required
+2026-08-11 09:40:00 [INFO]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=GC-worker-1 | GC stabilising | Heap: 1.2GB/2GB | GC frequency normalising
+2026-08-11 09:42:00 [INFO]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=http-nio-8080-exec-2 | Thread pool recovering | Active: 42/150 | Queue: 0
+2026-08-11 09:44:00 [INFO]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=http-nio-8080-exec-4 | Application health: RECOVERING | DB pool: 8/20 available | Response time: 2100ms
+2026-08-11 09:47:00 [INFO]  APP=REPORTING_APP HOST=WEB_SERVER_01 THR=http-nio-8080-exec-6 | Application health: HEALTHY | Response time: 380ms | Pending action: fix MONTHLY_SALES_REPORT query + add index

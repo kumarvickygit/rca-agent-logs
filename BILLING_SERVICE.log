@@ -1,0 +1,31 @@
+================================================================================
+  BILLING_SERVICE — Application Log
+  Server: WEB_SERVER_01 | App: BILLING_SERVICE (Node.js/Express)
+  Incident: Collateral degradation due to WEB_SERVER_01 CPU exhaustion
+  Root cause hint: Not the culprit — impacted by REPORTING_APP consuming server resources
+================================================================================
+
+2026-08-11 09:00:08 [INFO]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Service started | Node.js v18.12 | Port: 3000 | Workers: 4
+2026-08-11 09:05:11 [INFO]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Billing transactions processed: 142 | Avg latency: 180ms | Error rate: 0%
+2026-08-11 09:10:14 [INFO]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Billing transactions processed: 289 | Avg latency: 195ms | Error rate: 0%
+2026-08-11 09:15:17 [INFO]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Billing transactions processed: 431 | Avg latency: 210ms | Error rate: 0%
+2026-08-11 09:20:20 [INFO]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Billing transactions processed: 578 | Avg latency: 225ms | Error rate: 0%
+2026-08-11 09:25:23 [INFO]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Billing transactions processed: 712 | Avg latency: 280ms | Error rate: 0.2%
+2026-08-11 09:28:40 [WARN]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Latency increasing | Avg: 380ms | CPU available to process: reduced | Host CPU: 62% — external pressure detected
+2026-08-11 09:30:50 [WARN]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Event loop lag: 420ms | Node.js worker threads competing for CPU | Host CPU: 88% — significant contention
+2026-08-11 09:31:30 [WARN]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Nginx upstream response slow | Shared upstream pool congested by REPORTING_APP traffic
+2026-08-11 09:32:10 [WARN]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Transaction processing degraded | Latency: 1240ms | SLA threshold: 500ms | SLA BREACHED
+2026-08-11 09:33:00 [ERROR] APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Payment gateway timeout | External call to PAYGATE_01 timed out after 5000ms | Host CPU starvation causing socket delay | 8 transactions pending
+2026-08-11 09:33:40 [ERROR] APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Billing transaction FAILED | Invoice INV-20260811-8821 | Error: upstream timeout | Customer: CUST-004421 | Amount: EUR 14,200
+2026-08-11 09:34:20 [ERROR] APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Billing transaction FAILED | Invoice INV-20260811-8822 | Error: upstream timeout | Customer: CUST-007732 | Amount: EUR 8,450
+2026-08-11 09:35:00 [ERROR] APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Nginx returning 502 Bad Gateway for billing endpoints | Host overwhelmed — not a BILLING_SERVICE application error
+2026-08-11 09:35:30 [ERROR] APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Health check endpoint /health returning 503 | Node.js event loop blocked | CPU unavailable from host — collateral victim
+2026-08-11 09:36:00 [ERROR] APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | 14 active connections dropped by Nginx | Host CPU: 99% | BILLING_SERVICE has no application-level errors — host resource starvation confirmed
+2026-08-11 09:36:30 [WARN]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Retry queue building | 14 failed transactions queued for retry | Auto-retry enabled: YES | Retry interval: 30s
+2026-08-11 09:37:20 [WARN]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Host CPU dropping | CPU: 86% | Event loop lag reducing: 280ms
+2026-08-11 09:38:10 [INFO]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Host CPU: 71% | Latency improving: 680ms | Retry queue processing
+2026-08-11 09:39:30 [INFO]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Retry successful | 12/14 transactions recovered | 2 requiring manual review
+2026-08-11 09:41:00 [INFO]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Latency: 380ms | Error rate: 0.1% | Recovering
+2026-08-11 09:43:00 [INFO]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Latency: 210ms | Error rate: 0% | Service normal
+2026-08-11 09:45:00 [INFO]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | All transactions cleared | 2 invoices require manual resubmission: INV-20260811-8821, INV-20260811-8822
+2026-08-11 09:47:00 [INFO]  APP=BILLING_SERVICE HOST=WEB_SERVER_01 PID=15204 | Service fully recovered | BILLING_SERVICE was collateral victim — root cause: REPORTING_APP on shared host
