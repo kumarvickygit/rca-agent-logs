@@ -1,7 +1,8 @@
 @Reporting 2026-08-10T00:05:00,720 ERROR [pool-2-thread-35] [LoggerUtils:14] error when executing sql 'call A2A_MSG_RELATED_PURGING(i_purge_older_than_in_days => 30, i_table_owner = TEST1_B2)', connection: A2A : ORA-00907: missing right parenthesis
 
-@Reporting 2026-08-10T00:05:00,720 ERROR [pool-2-thread-35] [LoggerUtils:14] error when executing Report template 210001 : ORA-00907: missing right parenthesis
-Issue : query is not designed properly. re-write the sql and check executing again.
+SQL: select * from (Select a,b,c from table_a a join table_b b on a.id=b.a_id and a.id)
+
+check and re-write the sql and check executing again.
 
 @Reporting 2026-08-10T00:05:00,734 WARN  [pool-2-thread-35] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
 @Reporting 2026-08-10T00:05:00,745 WARN  [pool-2-thread-35] [deprecation:1840] HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
